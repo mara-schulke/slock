@@ -172,15 +172,10 @@ readpw(Display *dpy, struct xrandr *rr, struct lock **locks, int nscreens,
 				len = 0;
 				break;
 			case XK_Escape:
+			case XK_BackSpace:
 				explicit_bzero(&passwd, sizeof(passwd));
 				len = 0;
 				failure = 0;
-				break;
-			case XK_BackSpace:
-				if (len) {
-					passwd[--len] = '\0';
-					failure = 0;
-				}
 				break;
 			default:
 				if (num && !iscntrl((int)buf[0]) && (len + num < sizeof(passwd))) {
